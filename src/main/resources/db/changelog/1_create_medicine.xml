@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_table_medicine" author="viktor_shiyan">
+        <createTable tableName="medicine">
+            <column name="barcode" type="varchar(255)" autoIncrement="false">
+                <constraints primaryKeyName="medicine_pkey" primaryKey="true" nullable="false"/>
+            </column>
+            <column name="mnn" type="varchar(255)"/>
+            <column name="trade_name" type="varchar(255)"/>
+            <column name="dosage_form" type="varchar(255)"/>
+            <column name="manufacturer" type="varchar(255)"/>
+            <column name="code_atx" type="varchar(255)"/>
+            <column name="amount" type="varchar(255)"/>
+            <column name="limit_price_without_vat" type="varchar(255)"/>
+            <column name="primary_packaging_price" type="varchar(255)"/>
+            <column name="number_ru" type="varchar(255)"/>
+            <column name="price_registration_date_and_solutions" type="varchar(255)"/>
+            <column name="effective_date" type="varchar(255)"/>
+        </createTable>
+        <modifySql dbms="postgresql"/>
+    </changeSet>
+</databaseChangeLog>

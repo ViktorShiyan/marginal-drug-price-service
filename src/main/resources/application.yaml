@@ -4,6 +4,8 @@ spring:
     url: jdbc:postgresql://localhost:5433/marginal
     user: test
     password: testpass
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
   datasource:
     url: jdbc:postgresql://localhost:5433/marginal
     username: test
@@ -15,6 +17,8 @@ spring:
         show_sql: false
         format_sql: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: none
 kafka:
   bootstrapAddress: localhost:9092
   producer-id: medicine_id
