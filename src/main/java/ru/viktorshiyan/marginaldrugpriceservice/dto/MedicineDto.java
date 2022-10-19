@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * DTO для отправки в кафку
+ * DTO для получения осообщения из кафки
  */
 @Data
 @AllArgsConstructor

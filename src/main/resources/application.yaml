@@ -15,7 +15,6 @@ spring:
         show_sql: false
         format_sql: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
 kafka:
   bootstrapAddress: localhost:9092
   producer-id: medicine_id
