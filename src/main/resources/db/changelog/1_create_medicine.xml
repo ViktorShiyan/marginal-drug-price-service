@@ -12,8 +12,8 @@
             </column>
             <column name="mnn" type="varchar(255)"/>
             <column name="trade_name" type="varchar(255)"/>
-            <column name="dosage_form" type="varchar(255)"/>
-            <column name="manufacturer" type="varchar(255)"/>
+            <column name="dosage_form" type="text"/>
+            <column name="manufacturer" type="text"/>
             <column name="code_atx" type="varchar(255)"/>
             <column name="amount" type="varchar(255)"/>
             <column name="limit_price_without_vat" type="varchar(255)"/>
