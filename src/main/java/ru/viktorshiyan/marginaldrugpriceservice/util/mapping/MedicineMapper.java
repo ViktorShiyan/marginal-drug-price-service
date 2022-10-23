@@ -4,7 +4,17 @@ import org.mapstruct.Mapper;
 import ru.viktorshiyan.marginaldrugpriceservice.dto.MedicineDto;
 import ru.viktorshiyan.marginaldrugpriceservice.models.Medicine;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Mapper(componentModel = "spring")
 public interface MedicineMapper {
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
     Medicine dtoToEntity(MedicineDto medicineDto);
+
+    default LocalDate stringToLocalDate(String stringDate) {
+        return LocalDate.parse(stringDate, formatter);
+    }
 }

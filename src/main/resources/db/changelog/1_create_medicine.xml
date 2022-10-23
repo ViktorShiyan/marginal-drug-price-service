@@ -20,7 +20,7 @@
             <column name="primary_packaging_price" type="varchar(255)"/>
             <column name="number_ru" type="varchar(255)"/>
             <column name="price_registration_date_and_solutions" type="varchar(255)"/>
-            <column name="effective_date" type="varchar(255)"/>
+            <column name="effective_date" type="date"/>
         </createTable>
         <modifySql dbms="postgresql"/>
     </changeSet>

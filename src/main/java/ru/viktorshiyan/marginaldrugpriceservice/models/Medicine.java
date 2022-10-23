@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -64,5 +65,5 @@ public class Medicine {
     /**
      * Дата вступления в силу
      */
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 }
