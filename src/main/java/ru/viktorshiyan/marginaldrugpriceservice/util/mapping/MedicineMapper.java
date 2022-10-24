@@ -14,7 +14,13 @@ public interface MedicineMapper {
 
     Medicine dtoToEntity(MedicineDto medicineDto);
 
+    MedicineDto entityToDto(Medicine medicine);
+
     default LocalDate stringToLocalDate(String stringDate) {
         return LocalDate.parse(stringDate, formatter);
+    }
+
+    default String localDateToString(LocalDate stringDate) {
+        return stringDate.format(formatter);
     }
 }
