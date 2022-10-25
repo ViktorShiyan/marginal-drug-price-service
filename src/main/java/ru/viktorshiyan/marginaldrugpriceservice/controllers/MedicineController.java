@@ -1,6 +1,7 @@
 package ru.viktorshiyan.marginaldrugpriceservice.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class MedicineController {
     private final MedicineService medicineService;
 
+    @GetMapping("/findByStart")
     public Set<MedicineDto> getMedicineStartWith(@RequestParam String start) {
         return medicineService.getMedicineAtBeginWord(start);
     }

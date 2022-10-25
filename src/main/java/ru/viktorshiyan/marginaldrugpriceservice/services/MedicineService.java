@@ -30,7 +30,7 @@ public class MedicineService {
 
     public Set<MedicineDto> getMedicineAtBeginWord(String beginWord) {
         log.info("Start  getMedicineAtBeginWord: beginWord = {}", beginWord);
-        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnStartingWith(beginWord);
+        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWith(beginWord);
         Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
                 .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
         log.info("Finish  getMedicineAtBeginWord: result = {}", medicineDtos);

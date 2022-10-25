@@ -9,5 +9,5 @@ import java.util.Set;
 @Repository
 public interface MedicineRepository extends JpaRepository<Medicine, String> {
 
-    Set<Medicine> getMedicinesByMnnStartingWith(String s);
+    Set<Medicine> getMedicinesByMnnIgnoreCaseStartingWith(String s);
 }

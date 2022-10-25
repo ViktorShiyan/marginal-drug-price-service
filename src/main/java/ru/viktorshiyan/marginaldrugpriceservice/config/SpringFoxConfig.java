@@ -23,7 +23,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ru.viktorshiyan.marginaldrugpriceservice"))
+                .apis(RequestHandlerSelectors.basePackage("ru.viktorshiyan.marginaldrugpriceservice.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
