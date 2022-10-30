@@ -79,11 +79,13 @@
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.telegram/telegrambots-spring-boot-starter -->
 		<dependency>
-			<groupId>com.github.pengrad</groupId>
-			<artifactId>java-telegram-bot-api</artifactId>
-			<version>6.2.0</version>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambots-spring-boot-starter</artifactId>
+			<version>6.1.0</version>
 		</dependency>
+
 
 		<!--Swagger-->
 		<dependency>
