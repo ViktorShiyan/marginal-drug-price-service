@@ -12,6 +12,7 @@ import ru.viktorshiyan.marginaldrugpriceservice.services.MedicineService;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 
@@ -37,23 +38,27 @@ public class TelegramMedicineBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-
-            Set<MedicineDto> medicineAtBeginWord = medicineService.getMedicineAtBeginWord(update.getMessage().getText());
-            List<String> stringList = medicineAtBeginWord.stream().map(MedicineDto::getDosageForm).distinct().collect(Collectors.toList());
+            String text = update.getMessage().getText();
+            String[] s = text.split(" ");
+            Set<MedicineDto> medicineAtBeginWord = medicineService.getMedicineAtBeginWordWithFormWithManufacture(s[0], s[1], s[2]);
+            Set<StringJoiner> stringJoiners = medicineAtBeginWord.stream()
+                    .map(medicineDto -> new StringJoiner("\n\n")
+                            .add(medicineDto.getMnn())
+                            .add(medicineDto.getDosageForm())
+                            .add(medicineDto.getManufacturer())
+                            .add(medicineDto.getLimitPriceWithoutVat()))
+                    .collect(Collectors.toSet());
             long chat_id = update.getMessage().getChatId();
-
             SendMessage message = new SendMessage();
             message.setChatId(chat_id);
-            stringList.forEach(
-                    (string) -> {
-                        try {
-                            message.setText(string);
-                            execute(message);
-                        } catch (TelegramApiException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-            );
+            for (StringJoiner stringJoiner : stringJoiners) {
+                try {
+                    message.setText(stringJoiner.toString());
+                    execute(message);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

@@ -36,4 +36,24 @@ public class MedicineService {
         log.info("Finish  getMedicineAtBeginWord: result = {}", medicineDtos);
         return medicineDtos;
     }
+
+    public Set<MedicineDto> getMedicineAtBeginWordWithForm(String beginWord, String form) {
+        log.info("Start  getMedicineAtBeginWordWithForm: beginWord = {}", beginWord);
+        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContaining(beginWord, form);
+        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
+                .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
+        log.info("Finish  getMedicineAtBeginWordWithForm: result = {}", medicineDtos);
+        return medicineDtos;
+
+    }
+
+    public Set<MedicineDto> getMedicineAtBeginWordWithFormWithManufacture(String beginWord, String form, String manufacture) {
+        log.info("Start  getMedicineAtBeginWordWithFormWithManufacture: beginWord = {}", beginWord);
+        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContainingAndManufacturerContaining(beginWord, form, manufacture);
+        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
+                .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
+        log.info("Finish  getMedicineAtBeginWordWithFormWithManufacture: result = {}", medicineDtos);
+        return medicineDtos;
+
+    }
 }
