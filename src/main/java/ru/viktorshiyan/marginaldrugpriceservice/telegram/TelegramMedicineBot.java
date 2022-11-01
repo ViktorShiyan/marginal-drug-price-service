@@ -1,6 +1,7 @@
 package ru.viktorshiyan.marginaldrugpriceservice.telegram;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TelegramMedicineBot extends TelegramLongPollingBot {
 
-    private final static String botToken = "5731557838:AAFKKSiuCTgeIM3YKJv5ZWvGV0WHeXfkR5A";
     private final static String botName = "medicine_price_bot";
-
+    @Value("${bot.token}")
+    private String botToken;
     private final MedicineService medicineService;
 
     @Override

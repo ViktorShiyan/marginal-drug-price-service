@@ -22,3 +22,6 @@ spring:
 kafka:
   bootstrapAddress: localhost:9092
   producer-id: medicine_id
+
+bot:
+  token: "5731557838:AAFKKSiuCTgeIM3YKJv5ZWvGV0WHeXfkR5A"
