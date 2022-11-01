@@ -9,8 +9,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.viktorshiyan.marginaldrugpriceservice.dto.MedicineDto;
 import ru.viktorshiyan.marginaldrugpriceservice.services.MedicineService;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -43,7 +41,7 @@ public class TelegramMedicineBot extends TelegramLongPollingBot {
             Set<MedicineDto> medicineAtBeginWord = medicineService.getMedicineAtBeginWordWithFormWithManufacture(s[0], s[1], s[2]);
             Set<StringJoiner> stringJoiners = medicineAtBeginWord.stream()
                     .map(medicineDto -> new StringJoiner("\n\n")
-                            .add(medicineDto.getMnn())
+                            .add(medicineDto.getMnn() + " " + medicineDto.getTradeName())
                             .add(medicineDto.getDosageForm())
                             .add(medicineDto.getManufacturer())
                             .add(medicineDto.getLimitPriceWithoutVat()))
