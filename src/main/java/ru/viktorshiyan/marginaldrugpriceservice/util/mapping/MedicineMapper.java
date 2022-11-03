@@ -7,6 +7,10 @@ import ru.viktorshiyan.marginaldrugpriceservice.models.Medicine;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author Viktor Shiyan
+ * @since 03.11.2022
+ */
 @Mapper(componentModel = "spring")
 public interface MedicineMapper {
 
