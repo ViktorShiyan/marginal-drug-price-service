@@ -31,8 +31,7 @@ public class MedicineService {
     public Set<MedicineDto> getMedicineAtBeginWord(String beginWord) {
         log.info("Start  getMedicineAtBeginWord: beginWord = {}", beginWord);
         Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWith(beginWord);
-        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
-                .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
+        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith.stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
         log.info("Finish  getMedicineAtBeginWord: result = {}", medicineDtos);
         return medicineDtos;
     }
@@ -40,18 +39,22 @@ public class MedicineService {
     public Set<MedicineDto> getMedicineAtBeginWordWithForm(String beginWord, String form) {
         log.info("Start  getMedicineAtBeginWordWithForm: beginWord = {}", beginWord);
         Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContaining(beginWord, form);
-        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
-                .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
+        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith.stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
         log.info("Finish  getMedicineAtBeginWordWithForm: result = {}", medicineDtos);
         return medicineDtos;
 
     }
 
+    /**
+     * @param beginWord   начало названия препората
+     * @param form        форма выпуска
+     * @param manufacture производитель
+     * @return множество препоратов
+     */
     public Set<MedicineDto> getMedicineAtBeginWordWithFormWithManufacture(String beginWord, String form, String manufacture) {
         log.info("Start  getMedicineAtBeginWordWithFormWithManufacture: beginWord = {}", beginWord);
-        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContainingAndManufacturerContaining(beginWord, form, manufacture);
-        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith
-                .stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
+        Set<Medicine> medicinesByMnnStartingWith = medicineRepository.getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContainingIgnoreCaseAndManufacturerContainingIgnoreCase(beginWord, form, manufacture);
+        Set<MedicineDto> medicineDtos = medicinesByMnnStartingWith.stream().map(medicineMapper::entityToDto).collect(Collectors.toSet());
         log.info("Finish  getMedicineAtBeginWordWithFormWithManufacture: result = {}", medicineDtos);
         return medicineDtos;
 

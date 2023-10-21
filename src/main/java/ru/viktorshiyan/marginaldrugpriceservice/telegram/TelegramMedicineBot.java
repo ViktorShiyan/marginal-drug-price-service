@@ -39,13 +39,15 @@ public class TelegramMedicineBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String text = update.getMessage().getText();
             String[] s = text.split(" ");
-            Set<MedicineDto> medicineAtBeginWord = medicineService.getMedicineAtBeginWordWithFormWithManufacture(s[0], s[1], s[2]);
+            Set<MedicineDto> medicineAtBeginWord = medicineService.getMedicineAtBeginWordWithFormWithManufacture(
+                    s[0], s.length >= 2 ? s[1] : "", s.length >= 3 ? s[2] : ""
+            );
             Set<StringJoiner> stringJoiners = medicineAtBeginWord.stream()
                     .map(medicineDto -> new StringJoiner("\n\n")
-                            .add(medicineDto.getMnn() + " " + medicineDto.getTradeName())
-                            .add(medicineDto.getDosageForm())
-                            .add(medicineDto.getManufacturer())
-                            .add(medicineDto.getLimitPriceWithoutVat()))
+                            .add("МНН: " + medicineDto.getMnn() + " " + medicineDto.getTradeName())
+                            .add("Лекарственная форма: " + medicineDto.getDosageForm())
+                            .add("Производитель: " + medicineDto.getManufacturer())
+                            .add("Предельная цена руб. без НДС:\n" + medicineDto.getLimitPriceWithoutVat() + " руб."))
                     .collect(Collectors.toSet());
             long chat_id = update.getMessage().getChatId();
             SendMessage message = new SendMessage();

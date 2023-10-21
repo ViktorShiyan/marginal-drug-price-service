@@ -13,5 +13,5 @@ public interface MedicineRepository extends JpaRepository<Medicine, String> {
 
     Set<Medicine> getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContaining(String name, String form);
 
-    Set<Medicine> getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContainingAndManufacturerContaining(String name, String form, String manufacturer);
+    Set<Medicine> getMedicinesByMnnIgnoreCaseStartingWithAndDosageFormContainingIgnoreCaseAndManufacturerContainingIgnoreCase(String name, String form, String manufacturer);
 }
